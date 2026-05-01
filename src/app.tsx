@@ -1,5 +1,11 @@
+import { Header } from "./components/header";
+import { Hero } from "./components/hero";
+
 export function App() {
   return (
-    <div>Hello World</div>
+    <>
+      <Header />
+      <Hero/>
+    </>
   )
 }
