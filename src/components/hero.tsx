@@ -2,6 +2,10 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react'
 import { useCountdown } from '../hooks/useCountdown'
 import { event } from '../data/event'
+import { stagger, fadeUp, countFlip } from '../lib/motion'
+
+const containerVariants = stagger(0.12, 0.25)
+const itemVariants = fadeUp(28, 0.75)
 
 function CountUnit({ value, label }: { value: number; label: string }) {
   const display = String(value).padStart(2, '0')
@@ -12,10 +16,10 @@ function CountUnit({ value, label }: { value: number; label: string }) {
         <AnimatePresence mode="popLayout">
           <motion.span
             key={display}
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: '-100%', opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={countFlip.initial}
+            animate={countFlip.animate}
+            exit={countFlip.exit}
+            transition={countFlip.transition}
             className="block font-display font-light leading-none tabular-nums"
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
@@ -133,17 +137,6 @@ function Particles() {
   )
 }
 
-// ─── Variantes de animação ────────────────────────────────────────────────────
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
-}
-const itemVariants = {
-  hidden:  { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-}
-
-// ─── Hero ─────────────────────────────────────────────────────────────────────
 export function Hero() {
   const ref = useRef(null)
   const { days, hours, minutes, seconds, expired } = useCountdown(event.date.iso)
@@ -252,7 +245,7 @@ export function Hero() {
           <motion.button
             variants={itemVariants}
             onClick={() => document.querySelector('#detalhes')?.scrollIntoView({ behavior: 'smooth' })}
-            className="mt-4 flex flex-col items-center gap-2 bg-transparent border-0 cursor-pointer"
+            className="mt-4 flex flex-col items-center gap-2 bg-transparent border-0 cursor-pointer focus-ring rounded-lg p-2 transition-opacity hover:opacity-100 opacity-70"
             style={{ color: 'var(--color-text-faint)' }}
           >
             <span className="font-body uppercase" style={{ fontSize: '10px', letterSpacing: '0.3em' }}>

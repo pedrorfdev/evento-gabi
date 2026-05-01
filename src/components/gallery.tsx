@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Images } from 'lucide-react'
-import PhotoAlbum from 'react-photo-album'
+import { MasonryPhotoAlbum } from 'react-photo-album'
+import 'react-photo-album/masonry.css'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event, photos } from '../data/event'
+import { fadeUp } from '../lib/motion'
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-}
+const itemVariants = fadeUp()
 
 export function Gallery() {
   const { ref, isInView } = useScrollAnimation()
@@ -35,14 +34,12 @@ export function Gallery() {
 
         {photos.length > 0 ? (
           <motion.div variants={itemVariants}>
-            <PhotoAlbum
-              layout="masonry"
+            <MasonryPhotoAlbum
               photos={photos}
               spacing={12}
               columns={(containerWidth) => {
                 if (containerWidth < 520) return 2
-                if (containerWidth < 900) return 3
-                return 4
+                return 3
               }}
               onClick={({ index: photoIndex }) => setIndex(photoIndex)}
             />

@@ -2,11 +2,9 @@ import { motion } from 'motion/react'
 import { MessageCircle, Send } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
+import { fadeUp } from '../lib/motion'
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-}
+const itemVariants = fadeUp()
 
 function whatsappUrl() {
   const phone = event.rsvp.phone || event.social.whatsapp
@@ -54,8 +52,7 @@ export function Rsvp() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-body text-xs uppercase tracking-widest"
-              style={{ background: 'var(--color-pink)', color: 'var(--color-bg-deep)' }}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-body text-xs uppercase tracking-widest btn-premium focus-ring"
             >
               <Send size={15} />
               {event.rsvpSection.primaryLabel}
@@ -65,7 +62,7 @@ export function Rsvp() {
               type="button"
               disabled
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-body text-xs uppercase tracking-widest opacity-60"
-              style={{ background: 'var(--color-pink)', color: 'var(--color-bg-deep)' }}
+              style={{ background: 'var(--color-surface-2)', color: 'var(--color-text-muted)' }}
             >
               <Send size={15} />
               {event.rsvpSection.formUnavailable}
@@ -79,7 +76,7 @@ export function Rsvp() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-6 font-body text-xs uppercase tracking-widest"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-6 font-body text-xs uppercase tracking-widest transition-all duration-300 focus-ring hover:bg-[var(--color-surface-2)] hover:text-[var(--color-text-primary)]"
               style={{ borderColor: 'var(--color-border-md)', color: 'var(--color-text-muted)' }}
             >
               <MessageCircle size={15} />

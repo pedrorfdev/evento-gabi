@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 //import { Instagram } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
+import { transitions } from '../lib/motion'
 
 // Ícone WhatsApp (Lucide não tem, SVG manual)
 function WhatsAppIcon({ size = 16 }) {
@@ -27,7 +28,7 @@ export function Footer() {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={transitions.smooth(0.7)}
         className="max-w-4xl mx-auto flex flex-col items-center gap-8"
       >
         {/* Nome e hashtag */}
@@ -73,10 +74,8 @@ export function Footer() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 font-body transition-colors duration-200"
+                className="flex items-center gap-2 font-body transition-colors duration-200 focus-ring cursor-pointer hover:text-[var(--color-pink)]"
                 style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}
-                onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-pink)' }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-muted)' }}
               >
                 {/* <Instagram size={16} /> */}
                 @{event.social.instagram}
@@ -94,10 +93,8 @@ export function Footer() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 font-body transition-colors duration-200"
+                className="flex items-center gap-2 font-body transition-colors duration-200 focus-ring cursor-pointer hover:text-[var(--color-pink)]"
                 style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}
-                onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-pink)' }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-muted)' }}
               >
                 <WhatsAppIcon size={15} />
                 Dúvidas

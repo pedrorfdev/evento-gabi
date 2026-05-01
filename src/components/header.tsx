@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Moon, Sun, Menu, X } from 'lucide-react'
 import { clsx } from 'clsx'
 import { useTheme } from '../hooks/useTheme'
+import { event } from '../data/event'
 
 const NAV_LINKS = [
   { label: 'Detalhes',  href: '#detalhes'  },
@@ -13,6 +14,15 @@ const NAV_LINKS = [
 
 function scrollTo(id: string) {
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
+}
+
+function handleNavClick(href: string, isCta?: boolean) {
+  if (isCta && event.rsvp.formUrl) {
+    window.open(event.rsvp.formUrl, '_blank', 'noopener,noreferrer')
+    return
+  }
+
+  scrollTo(href)
 }
 
 export function Header() {
@@ -54,7 +64,7 @@ export function Header() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="font-display text-2xl leading-none transition-opacity hover:opacity-70"
+            className="font-display text-2xl leading-none transition-opacity hover:opacity-70 focus-ring rounded"
             style={{ color: 'var(--color-pink)', background: 'none', border: 'none', cursor: 'pointer' }}
           >
             G.
@@ -65,12 +75,12 @@ export function Header() {
             {NAV_LINKS.map(link => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => handleNavClick(link.href, link.cta)}
                 className={clsx(
-                  'font-body text-xs uppercase tracking-widest transition-colors duration-200 bg-transparent border-0 cursor-pointer',
+                  'font-body text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer focus-ring rounded-full',
                   link.cta
-                    ? 'px-4 py-1.5 rounded-full border'
-                    : 'hover:opacity-100 opacity-60 hover:opacity-100'
+                    ? 'btn-premium px-6 py-2 font-medium tracking-widest text-[11px]'
+                    : 'bg-transparent border-0 hover:text-[var(--color-pink)] hover:bg-[var(--color-surface-2)] px-3 py-1.5'
                 )}
                 style={{
                   fontFamily: 'var(--font-body)',
@@ -89,10 +99,12 @@ export function Header() {
             <button
               onClick={toggle}
               aria-label="Alternar tema"
-              className="w-9 h-9 rounded-full flex items-center justify-center border transition-colors duration-200 bg-transparent cursor-pointer"
+              className="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 cursor-pointer focus-ring hover:bg-[var(--color-surface-2)]"
               style={{
-                borderColor: 'var(--color-border)',
-                color: 'var(--color-text-muted)',
+                background: 'var(--color-surface)',
+                borderColor: 'var(--color-border-md)',
+                color: 'var(--color-text-primary)',
+                boxShadow: '0 8px 24px color-mix(in srgb, var(--color-bg-deep) 24%, transparent)',
               }}
             >
               <AnimatePresence mode="wait">
@@ -113,8 +125,8 @@ export function Header() {
             <button
               onClick={() => setMenuOpen(o => !o)}
               aria-label="Menu"
-              className="md:hidden w-9 h-9 rounded-full flex items-center justify-center border bg-transparent cursor-pointer"
-              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
+              className="md:hidden w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 cursor-pointer focus-ring hover:bg-[var(--color-surface-2)]"
+              style={{ background: 'var(--color-surface)', borderColor: 'var(--color-border-md)', color: 'var(--color-text-primary)' }}
             >
               {menuOpen ? <X size={14} /> : <Menu size={14} />}
             </button>
@@ -142,7 +154,7 @@ export function Header() {
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
-                onClick={() => { scrollTo(link.href); setMenuOpen(false) }}
+                onClick={() => { handleNavClick(link.href, link.cta); setMenuOpen(false) }}
                 className="font-body text-sm uppercase tracking-widest text-left py-4 border-b bg-transparent border-x-0 border-t-0 cursor-pointer w-full"
                 style={{
                   borderColor: 'var(--color-border)',

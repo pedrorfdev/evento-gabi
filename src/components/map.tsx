@@ -2,16 +2,10 @@ import { motion } from 'motion/react'
 import { MapPin, Navigation } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
+import { fadeUp, stagger } from '../lib/motion'
 
-const itemVariants = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const } },
-}
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-}
+const itemVariants = fadeUp(24, 0.7)
+const containerVariants = stagger(0.12, 0.1)
 
 export function Map() {
   const { ref, isInView } = useScrollAnimation()
@@ -27,7 +21,7 @@ export function Map() {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="max-w-4xl mx-auto flex flex-col gap-8"
+        className="max-w-6xl mx-auto flex flex-col gap-8"
       >
         {/* Cabeçalho */}
         <motion.div variants={itemVariants} className="flex flex-col items-center text-center gap-3">
@@ -116,13 +110,11 @@ export function Map() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full border font-body text-xs uppercase tracking-widest transition-colors duration-200 flex-shrink-0"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full border font-body text-xs uppercase tracking-widest transition-colors duration-200 flex-shrink-0 cursor-pointer focus-ring hover:text-[var(--color-pink)] hover:border-[var(--color-pink)]"
             style={{
               borderColor: 'var(--color-border-md)',
               color: 'var(--color-text-muted)',
             }}
-            onMouseEnter={e => { e.currentTarget.style.color = 'var(--color-pink)'; e.currentTarget.style.borderColor = 'var(--color-pink)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = 'var(--color-text-muted)'; e.currentTarget.style.borderColor = 'var(--color-border-md)' }}
           >
             <Navigation size={13} />
             Como chegar
