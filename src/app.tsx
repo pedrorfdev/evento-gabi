@@ -1,8 +1,12 @@
+import { Details } from "./components/details";
 import { DressCode } from "./components/dress-code";
 import { Footer } from "./components/footer";
+import { Gallery } from "./components/gallery";
+import { Gifts } from "./components/gifts";
 import { Header } from "./components/header";
 import { Hero } from "./components/hero";
 import { Map } from "./components/map";
+import { Rsvp } from "./components/rsvp";
 
 export default function App() {
   return (
@@ -10,20 +14,12 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        {/* Sprint 3 — Details (personagem + cards) */}
-        <div id="detalhes" />
-
+        <Details />
         <DressCode />
         <Map />
-
-        {/* Sprint 3 — Gifts */}
-        <div id="presentes" style={{ height: '40px' }} />
-
-        {/* Sprint 3 — Gallery */}
-        <div id="galeria" style={{ height: '40px' }} />
-
-        {/* Sprint 3 — RSVP */}
-        <div id="confirmar" style={{ height: '40px' }} />
+        <Gifts />
+        <Gallery />
+        <Rsvp />
       </main>
       <Footer />
     </>
