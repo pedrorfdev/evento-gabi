@@ -31,6 +31,16 @@ export const fadeInRight = (x = 36, duration = 0.65): Variants => ({
   visible: { opacity: 1, x: 0, transition: { duration, ease } },
 })
 
+export const lockInLeft = (x = -80, duration = 1.1): Variants => ({
+  hidden: { opacity: 0, x, scale: 0.95 },
+  visible: { opacity: 1, x: 0, scale: 1, transition: { duration, ease: [0.16, 1, 0.3, 1] } },
+})
+
+export const lockInRight = (x = 80, duration = 1.1): Variants => ({
+  hidden: { opacity: 0, x, scale: 0.95 },
+  visible: { opacity: 1, x: 0, scale: 1, transition: { duration, ease: [0.16, 1, 0.3, 1] } },
+})
+
 export const scaleIn = (duration = 0.5): Variants => ({
   hidden: { opacity: 0, scale: 0.9 },
   visible: { opacity: 1, scale: 1, transition: { duration, ease } },
@@ -57,3 +67,19 @@ export const labelSwap = {
   exit: { opacity: 0, y: -8 },
   transition: { duration: 0.2 },
 }
+
+// ─── Premium Visual Rhythm ───────────────────────────────────────────────────
+export const textRevealLine = (duration = 0.8): Variants => ({
+  hidden: { y: '100%' },
+  visible: { y: 0, transition: { duration, ease } },
+})
+
+export const svgDraw = (duration = 1.5, delay = 0): Variants => ({
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: { pathLength: 1, opacity: 1, transition: { duration, delay, ease: 'easeInOut' } },
+})
+
+export const diagonalBackground = (duration = 1.2): Variants => ({
+  hidden: { y: '-100%', rotate: -5, scale: 1.1, opacity: 0 },
+  visible: { y: 0, rotate: 0, scale: 1, opacity: 1, transition: { duration, ease } },
+})

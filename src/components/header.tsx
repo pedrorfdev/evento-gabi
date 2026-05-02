@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Detalhes',  href: '#detalhes'  },
   { label: 'Presentes', href: '#presentes' },
   { label: 'Galeria',   href: '#galeria'   },
+  { label: 'Visitantes', href: '#visitantes' },
   { label: 'Confirmar', href: '#confirmar', cta: true },
 ]
 

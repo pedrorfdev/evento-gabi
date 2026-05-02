@@ -171,26 +171,30 @@ export function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center text-center gap-5 px-6"
+          className="flex flex-col items-center text-center gap-8 px-6"
         >
 
           {/* Pré-título */}
           <motion.p
             variants={itemVariants}
             className="font-body uppercase"
-            style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)' }}
+            style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)', opacity: 0.8 }}
           >
             você está convidado para os
           </motion.p>
 
           {/* Nome principal — gradiente rosa, com fallback sólido */}
-          <motion.h1
-            variants={itemVariants}
-            className="font-display font-light leading-none text-gradient-pink"
-            style={{ fontSize: 'clamp(4.5rem, 18vw, 11rem)', letterSpacing: '-0.02em' }}
-          >
-            {event.title}
-          </motion.h1>
+          <div className="overflow-hidden py-2">
+            <motion.h1
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.4 }}
+              className="font-display font-light leading-none text-gradient-pink"
+              style={{ fontSize: 'clamp(4.5rem, 18vw, 11rem)', letterSpacing: '-0.02em' }}
+            >
+              {event.title}
+            </motion.h1>
+          </div>
 
           {/* 15 anos — prata */}
           <motion.p

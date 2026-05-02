@@ -97,6 +97,19 @@ export const event = {
     formUnavailable: 'Formulario em breve',
     whatsappMessage: 'Oi! Tenho uma duvida sobre os 15 anos da Gabriela.',
   },
+
+  visitorsSection: {
+    eyebrow: 'para quem vem de fora',
+    title: 'Dicas de Hospedagem e Beleza',
+    hotels: [
+      { name: 'Hotel Íbis', phone: '(00) 1234-5678', url: '#' },
+      { name: 'Hotel Plaza', phone: '(00) 8765-4321', url: '#' }
+    ],
+    salons: [
+      { name: 'Studio Beauty', phone: '(00) 1111-2222', url: '#' },
+      { name: 'Glamour Hair', phone: '(00) 3333-4444', url: '#' }
+    ]
+  },
 }
 
 export type Gift = {

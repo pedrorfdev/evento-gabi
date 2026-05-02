@@ -3,9 +3,24 @@ import { Shirt } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
 import { fadeUp, stagger } from '../lib/motion'
+import { RevealText } from './ui/reveal-text'
+import { DecorativeLine } from './ui/decorative-line'
 
 const itemVariants = fadeUp(24, 0.7)
 const containerVariants = stagger(0.1, 0.1)
+
+function ColorCircle({ color, name }: { color: string; name: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <motion.div
+        whileHover={{ scale: 1.15, rotate: 5 }}
+        className="w-12 h-12 rounded-full border-2 border-[var(--color-border)] shadow-sm"
+        style={{ background: color }}
+      />
+      <span className="font-body text-[10px] uppercase tracking-widest opacity-60">{name}</span>
+    </div>
+  )
+}
 
 export function DressCode() {
   const { ref, isInView } = useScrollAnimation()
@@ -13,15 +28,27 @@ export function DressCode() {
   return (
     <section
       id="dresscode"
-      className="py-24 px-6"
+      className="py-48 px-6 relative overflow-hidden"
       style={{ background: 'var(--color-bg-deep)' }}
     >
+      {/* Background Accent - Unique to Dress Code */}
+      <motion.div
+        animate={{ 
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+          rotate: [0, 10, 0]
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-20 -right-20 w-80 h-80 rounded-full blur-[100px] pointer-events-none"
+        style={{ background: 'var(--color-pink-night)' }}
+      />
+
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="max-w-2xl mx-auto flex flex-col items-center text-center gap-8"
+        className="max-w-3xl mx-auto flex flex-col items-center text-center gap-10 relative z-10"
       >
         {/* Ícone */}
         <motion.div
@@ -32,38 +59,40 @@ export function DressCode() {
           <Shirt size={22} />
         </motion.div>
 
-        {/* Pré-título */}
-        <motion.p
-          variants={itemVariants}
-          className="font-body uppercase"
-          style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)' }}
-        >
-          como se vestir
-        </motion.p>
+        <div className="flex flex-col items-center gap-6">
+          {/* Pré-título */}
+          <motion.p
+            variants={itemVariants}
+            className="font-body uppercase"
+            style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)', opacity: 0.8 }}
+          >
+            como se vestir
+          </motion.p>
 
-        {/* Título */}
-        <motion.h2
-          variants={itemVariants}
-          className="font-display font-light leading-tight"
-          style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', color: 'var(--color-text-primary)' }}
-        >
-          {event.dressCode.title}
-        </motion.h2>
+          {/* Título */}
+          <RevealText
+            as="h2"
+            className="font-display font-light leading-tight"
+            style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', color: 'var(--color-text-primary)' }}
+            text={event.dressCode.title}
+          />
+        </div>
 
-        {/* Ornamento */}
-        <motion.div variants={itemVariants} className="w-full max-w-xs flex items-center gap-3">
-          <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-silver-dim))' }} />
-          <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-            <path d="M8 0L9.5 6.5L16 8L9.5 9.5L8 16L6.5 9.5L0 8L6.5 6.5Z" fill="var(--color-silver)" opacity="0.6" />
-          </svg>
-          <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, var(--color-silver-dim), transparent)' }} />
+        {/* Palette - New visual element */}
+        <motion.div 
+          variants={itemVariants}
+          className="flex gap-6 sm:gap-10 py-4"
+        >
+          <ColorCircle color="#EF87AC" name="Rosa" />
+          <ColorCircle color="#D4D4E0" name="Prata" />
+          <ColorCircle color="#BF9B4A" name="Dourado" />
         </motion.div>
 
         {/* Descrição */}
         <motion.p
           variants={itemVariants}
           className="font-body leading-relaxed"
-          style={{ fontSize: '15px', color: 'var(--color-text-muted)', maxWidth: '420px' }}
+          style={{ fontSize: '15px', color: 'var(--color-text-muted)', maxWidth: '480px' }}
         >
           {event.dressCode.description}
         </motion.p>
@@ -85,4 +114,4 @@ export function DressCode() {
       </motion.div>
     </section>
   )
-}
+}

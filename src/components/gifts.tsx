@@ -4,6 +4,7 @@ import { ExternalLink, Gift, ChevronDown, ChevronUp } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event, gifts } from '../data/event'
 import { fadeUp, stagger, expandCard, labelSwap } from '../lib/motion'
+import { RevealText } from './ui/reveal-text'
 
 const INITIAL_COUNT = 6
 
@@ -59,7 +60,7 @@ export function Gifts() {
   const hasMore = gifts.length > INITIAL_COUNT
 
   return (
-    <section id="presentes" className="px-6 py-24" style={{ background: 'var(--color-bg-deep)' }}>
+    <section id="presentes" className="relative overflow-hidden px-6 py-48" style={{ background: 'var(--color-bg-deep)' }}>
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -67,13 +68,16 @@ export function Gifts() {
         animate={isInView ? 'visible' : 'hidden'}
         className="mx-auto flex max-w-6xl flex-col gap-10"
       >
-        <motion.div variants={itemVariants} className="mx-auto flex max-w-2xl flex-col items-center gap-3 text-center">
-          <p className="font-body uppercase" style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)' }}>
+        <motion.div variants={itemVariants} className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <motion.p variants={itemVariants} className="font-body uppercase" style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)', opacity: 0.8 }}>
             {event.giftsSection.eyebrow}
-          </p>
-          <h2 className="font-display font-light leading-tight" style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', color: 'var(--color-text-primary)' }}>
-            {event.giftsSection.title}
-          </h2>
+          </motion.p>
+          <RevealText
+            as="h2"
+            className="font-display font-light leading-tight"
+            style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', color: 'var(--color-text-primary)' }}
+            text={event.giftsSection.title}
+          />
         </motion.div>
 
         {gifts.length > 0 ? (

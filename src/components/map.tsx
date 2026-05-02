@@ -3,6 +3,7 @@ import { MapPin, Navigation } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
 import { fadeUp, stagger } from '../lib/motion'
+import { RevealText } from './ui/reveal-text'
 
 const itemVariants = fadeUp(24, 0.7)
 const containerVariants = stagger(0.12, 0.1)
@@ -13,7 +14,7 @@ export function Map() {
   return (
     <section
       id="local"
-      className="py-24 px-6"
+      className="py-48 px-6 overflow-hidden"
       style={{ background: 'var(--color-bg)' }}
     >
       <motion.div
@@ -24,24 +25,27 @@ export function Map() {
         className="max-w-6xl mx-auto flex flex-col gap-8"
       >
         {/* Cabeçalho */}
-        <motion.div variants={itemVariants} className="flex flex-col items-center text-center gap-3">
+        <motion.div variants={itemVariants} className="flex flex-col items-center text-center gap-6">
           <p
             className="font-body uppercase"
-            style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)' }}
+            style={{ fontSize: '11px', letterSpacing: '0.35em', color: 'var(--color-text-faint)', opacity: 0.8 }}
           >
             onde vai ser
           </p>
-          <h2
+          <RevealText
+            as="h2"
             className="font-display font-light leading-tight"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)', color: 'var(--color-text-primary)' }}
-          >
-            Localização
-          </h2>
+            text="Localização"
+          />
         </motion.div>
 
         {/* Embed do mapa */}
         <motion.div
-          variants={itemVariants}
+          variants={{
+            hidden: { opacity: 0, scale: 0.92, y: 30 },
+            visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 } }
+          }}
           className="w-full overflow-hidden rounded-2xl border"
           style={{ borderColor: 'var(--color-border)', aspectRatio: '16/7' }}
         >

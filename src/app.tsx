@@ -7,6 +7,7 @@ import { Header } from "./components/header";
 import { Hero } from "./components/hero";
 import { Map } from "./components/map";
 import { Rsvp } from "./components/rsvp";
+import { Visitors } from "./components/visitors";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Map />
         <Gifts />
         <Gallery />
+        <Visitors />
         <Rsvp />
       </main>
       <Footer />
