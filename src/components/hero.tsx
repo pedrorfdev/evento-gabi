@@ -60,7 +60,6 @@ function CountSep() {
   )
 }
 
-// ─── Ornamento ────────────────────────────────────────────────────────────────
 function Ornament() {
   return (
     <div className="flex items-center gap-3 w-full max-w-xs">
@@ -83,7 +82,6 @@ function Ornament() {
   )
 }
 
-// ─── Partículas ───────────────────────────────────────────────────────────────
 const DOTS = [
   { left: '12%', top: '20%', size: 2, delay: 0   },
   { left: '88%', top: '15%', size: 1, delay: 0.8 },
@@ -114,7 +112,6 @@ function Particles() {
         />
       ))}
 
-      {/* Círculos decorativos */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{

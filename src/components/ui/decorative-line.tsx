@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import { svgDraw } from '../../lib/motion'
 import { useScrollAnimation } from '../../hooks/useScrollAnimations'
 
 interface DecorativeLineProps {

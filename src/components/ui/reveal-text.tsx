@@ -17,7 +17,7 @@ export function RevealText({ text, className, style, as: Component = 'span', del
       className={`flex flex-wrap justify-center text-center ${className || ''}`} 
       style={{ ...style, display: 'flex' }}
     >
-      {text.split(' ').map((word, wordIndex, array) => (
+      {text.split(' ').map((word, wordIndex) => (
         <span key={wordIndex} className="inline-flex overflow-hidden pb-1 -mb-1 mr-[0.25em] last:mr-0">
           <MotionComponent
             variants={{

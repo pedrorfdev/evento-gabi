@@ -4,7 +4,6 @@ import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
 import { fadeUp, stagger } from '../lib/motion'
 import { RevealText } from './ui/reveal-text'
-import { DecorativeLine } from './ui/decorative-line'
 
 const itemVariants = fadeUp(24, 0.7)
 const containerVariants = stagger(0.1, 0.1)
@@ -114,4 +113,4 @@ export function DressCode() {
       </motion.div>
     </section>
   )
-}
+}

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { MapPin, Phone, Building2, Scissors } from 'lucide-react'
+import { Phone, Building2, Scissors } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
 import { stagger, fadeUp, diagonalBackground } from '../lib/motion'
@@ -14,7 +14,6 @@ export function Visitors() {
 
   return (
     <section id="visitantes" className="relative px-6 py-40 overflow-hidden text-[var(--color-bg-deep)]">
-      {/* Animated Diagonal Background */}
       <motion.div
         ref={ref}
         initial="hidden"
@@ -47,9 +46,8 @@ export function Visitors() {
         </motion.div>
 
         <div className="grid w-full gap-12 md:grid-cols-2 md:gap-8">
-          {/* Hotels */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 border-b border-[var(--color-bg-deep)] pb-3 opacity-80">
+            <div className="flex items-center gap-3 border-b border-bg-deep pb-3 opacity-80">
               <Building2 size={20} />
               <h3 className="font-display text-2xl">Hospedagem</h3>
             </div>
@@ -60,7 +58,7 @@ export function Visitors() {
                   href={hotel.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col gap-1 rounded-xl p-4 transition-all hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)]"
+                  className="group flex flex-col gap-1 rounded-xl p-4 transition-all hover:bg-surface hover:text-(--color-text-primary)"
                 >
                   <span className="font-display text-xl">{hotel.name}</span>
                   <div className="flex items-center gap-2 opacity-80 font-body text-sm">
@@ -74,7 +72,7 @@ export function Visitors() {
 
           {/* Salons */}
           <motion.div variants={itemVariants} className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 border-b border-[var(--color-bg-deep)] pb-3 opacity-80">
+            <div className="flex items-center gap-3 border-b border-bg-deep pb-3 opacity-80">
               <Scissors size={20} />
               <h3 className="font-display text-2xl">Salões de Beleza</h3>
             </div>
@@ -85,7 +83,7 @@ export function Visitors() {
                   href={salon.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col gap-1 rounded-xl p-4 transition-all hover:bg-[var(--color-surface)] hover:text-[var(--color-text-primary)]"
+                  className="group flex flex-col gap-1 rounded-xl p-4 transition-all hover:bg-surface hover:text-(--color-text-primary)"
                 >
                   <span className="font-display text-xl">{salon.name}</span>
                   <div className="flex items-center gap-2 opacity-80 font-body text-sm">

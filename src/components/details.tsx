@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { CalendarDays, MapPin, MessageCircle, Shirt } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
-import { stagger, lockInLeft, lockInRight } from '../lib/motion'
+import { lockInLeft, lockInRight } from '../lib/motion'
 import { RevealText } from './ui/reveal-text'
 
 const icons = {
@@ -12,7 +12,6 @@ const icons = {
   rsvp: MessageCircle,
 }
 
-const containerVariants = stagger(0.1, 0.2)
 const cardVariants = lockInRight()
 const imageVariants = lockInLeft()
 
