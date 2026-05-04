@@ -35,7 +35,7 @@ export const event = {
   rsvp: {
     deadline: '15 de janeiro de 2027',
     phone: '',
-    scriptUrl: 'https://script.google.com/macros/s/SEU_ID/exec',
+    scriptUrl: 'https://script.google.com/macros/s/AKfycbyxu3yAaxciQ6NDXYiui_GMzV7N8Rf773Qm1PlUUYXXzrz6PN19xt9xVSXxG508S6KYXQ/exec',
   },
 
   social: {
