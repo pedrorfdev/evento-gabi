@@ -83,3 +83,32 @@ export const diagonalBackground = (duration = 1.2): Variants => ({
   hidden: { y: '-100%', rotate: -5, scale: 1.1, opacity: 0 },
   visible: { y: 0, rotate: 0, scale: 1, opacity: 1, transition: { duration, ease } },
 })
+
+// ─── RSVP Form Specifics ─────────────────────────────────────────────────────
+export const errorShake: Variants = {
+  idle: { x: 0 },
+  shake: {
+    x: [0, -8, 8, -6, 6, 0],
+    transition: { duration: 0.4 },
+  },
+}
+
+export const successScale = {
+  form: {
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
+    exit: { opacity: 0, scale: 0.95, y: -12, transition: { duration: 0.4 } },
+  },
+  message: {
+    initial: { opacity: 0, scale: 0.8, y: 20 },
+    animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.55, ease } },
+    exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3 } },
+  },
+}
+
+export const focusLineTransition = { duration: 0.25, ease } as const
+
+export const rotateInfinite = {
+  animate: { rotate: 360 },
+  transition: { repeat: Infinity, duration: 1, ease: 'linear' } as const,
+}

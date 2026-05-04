@@ -1,9 +1,10 @@
 import { motion } from 'motion/react'
-import { MessageCircle, Send } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimations'
 import { event } from '../data/event'
 import { fadeUp } from '../lib/motion'
 import { RevealText } from './ui/reveal-text'
+import { RsvpForm } from './rsvp-form'
 
 const itemVariants = fadeUp()
 
@@ -50,31 +51,11 @@ export function Rsvp() {
           {event.rsvpSection.description}
         </motion.p>
 
-        <motion.div variants={itemVariants} className="flex w-full max-w-lg flex-col gap-3 sm:flex-row sm:justify-center">
-          {event.rsvp.formUrl ? (
-            <motion.a
-              href={event.rsvp.formUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-body text-xs uppercase tracking-widest btn-premium focus-ring"
-            >
-              <Send size={15} />
-              {event.rsvpSection.primaryLabel}
-            </motion.a>
-          ) : (
-            <button
-              type="button"
-              disabled
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 font-body text-xs uppercase tracking-widest opacity-60"
-              style={{ background: 'var(--color-surface-2)', color: 'var(--color-text-muted)' }}
-            >
-              <Send size={15} />
-              {event.rsvpSection.formUnavailable}
-            </button>
-          )}
+        <motion.div variants={itemVariants} className="w-full">
+          <RsvpForm />
+        </motion.div>
 
+        <motion.div variants={itemVariants} className="flex flex-col items-center gap-4">
           {whatsUrl && (
             <motion.a
               href={whatsUrl}
@@ -89,11 +70,11 @@ export function Rsvp() {
               {event.rsvpSection.secondaryLabel}
             </motion.a>
           )}
-        </motion.div>
 
-        <motion.p variants={itemVariants} className="font-body uppercase" style={{ fontSize: '10px', letterSpacing: '0.22em', color: 'var(--color-text-faint)' }}>
-          {event.rsvp.deadline}
-        </motion.p>
+          <motion.p className="font-body uppercase" style={{ fontSize: '10px', letterSpacing: '0.22em', color: 'var(--color-text-faint)' }}>
+            Confirmar até {event.rsvp.deadline}
+          </motion.p>
+        </motion.div>
       </motion.div>
     </section>
   )

@@ -34,8 +34,8 @@ export const event = {
 
   rsvp: {
     deadline: '15 de janeiro de 2027',
-    formUrl: '',
     phone: '',
+    scriptUrl: 'https://script.google.com/macros/s/SEU_ID/exec',
   },
 
   social: {
@@ -96,6 +96,9 @@ export const event = {
     secondaryLabel: 'Tirar duvida',
     formUnavailable: 'Formulario em breve',
     whatsappMessage: 'Oi! Tenho uma duvida sobre os 15 anos da Gabriela.',
+    errorMessage: 'Erro ao enviar formulario. Tente novamente.',
+    successDescription: 'Seu RSVP foi registrado com sucesso! Estamos muito felizes por celebrar este momento especial com você.',
+    successTitle: 'Confirmado!'
   },
 
   visitorsSection: {
