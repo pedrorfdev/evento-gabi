@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Moon, Sun, Menu, X } from 'lucide-react'
 import { clsx } from 'clsx'
 import { useTheme } from '../hooks/useTheme'
-import { event } from '../data/event'
 
 const NAV_LINKS = [
   { label: 'Detalhes',  href: '#detalhes'  },
