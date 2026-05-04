@@ -18,8 +18,8 @@ function scrollTo(id: string) {
 }
 
 function handleNavClick(href: string, isCta?: boolean) {
-  if (isCta && event.rsvp.formUrl) {
-    window.open(event.rsvp.formUrl, '_blank', 'noopener,noreferrer')
+  if (isCta && event.rsvp.scriptUrl) {
+    window.open(event.rsvp.scriptUrl, '_blank', 'noopener,noreferrer')
     return
   }
 
