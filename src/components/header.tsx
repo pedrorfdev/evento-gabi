@@ -17,12 +17,7 @@ function scrollTo(id: string) {
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function handleNavClick(href: string, isCta?: boolean) {
-  if (isCta && event.rsvp.scriptUrl) {
-    window.open(event.rsvp.scriptUrl, '_blank', 'noopener,noreferrer')
-    return
-  }
-
+function handleNavClick(href: string) {
   scrollTo(href)
 }
 
@@ -76,7 +71,7 @@ export function Header() {
             {NAV_LINKS.map(link => (
               <button
                 key={link.href}
-                onClick={() => handleNavClick(link.href, link.cta)}
+                onClick={() => handleNavClick(link.href)}
                 className={clsx(
                   'font-body text-xs uppercase tracking-widest transition-all duration-300 cursor-pointer focus-ring rounded-full',
                   link.cta
@@ -155,7 +150,7 @@ export function Header() {
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.05 }}
-                onClick={() => { handleNavClick(link.href, link.cta); setMenuOpen(false) }}
+                onClick={() => { handleNavClick(link.href); setMenuOpen(false) }}
                 className="font-body text-sm uppercase tracking-widest text-left py-4 border-b bg-transparent border-x-0 border-t-0 cursor-pointer w-full"
                 style={{
                   borderColor: 'var(--color-border)',
